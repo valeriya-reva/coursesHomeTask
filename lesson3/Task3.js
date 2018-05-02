@@ -19,3 +19,23 @@ function isPolindrome(input) {
 isPolindrome('топот');
 
 module.exports = isPolindrome;
+
+
+
+function isPalindrome(input) {
+
+    var startArr  = input.split('');
+    var firstLetter = startArr.shift();
+    var lastLetter  = startArr.pop();
+
+    if (firstLetter !== lastLetter) {
+        return false;
+    } else if (startArr.length < 2) {
+        return true;
+    }
+
+    return isPalindrome(startArr.join(''));
+
+}
+
+console.log(isPalindrome('vereberev'));

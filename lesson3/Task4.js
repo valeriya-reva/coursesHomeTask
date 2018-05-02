@@ -13,6 +13,20 @@
 // Вторая функция принимает массив чисел и возвращает строку.
 
 function encode(input, key) {
+    var arrKey = key.split('');
+    var arrKeyNun = [];
+
+    for (var i = 1; i < arrKey.length + 1; i++) {
+        arrKeyNun.push(i);
+    }
+    
+    return arrKeyNun;
+}
+
+console.log(encode('бяя', 'Буряя'));
+
+function decode(input, key) {
+
     return;
 }
 
@@ -25,6 +39,7 @@ function encode(input, key) {
 function decode(input, key) {
     return;
 }
+
 
 module.exports = {
     encode,
