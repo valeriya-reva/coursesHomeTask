@@ -28,7 +28,7 @@ Object.defineProperties(Array.prototype, {
     }
 });
 
-function encode(input, key = "абвгдбеуёжзийклмнопрстуфхцчшщъыьэюя") {
+function encode(input, key = "абвгдеуёжзийклмнопрстуфхцчшщъыьэюя") {
     var arrEncodeResult = [];
     var arrKey = key.toLowerCase().split('');
     var arrForEncode = input.toLowerCase().split('');
@@ -38,21 +38,20 @@ function encode(input, key = "абвгдбеуёжзийклмнопрстуфх
         for (var i = 0; arrForEncode.length > i; i++) {
 
             var lettreEncode = arrForEncode[i];
-            var a = [];
 
-            for (var j = 0; arrKey.length > j; j++) {
-                if (lettreEncode === arrKey[j]) {
-                    a.push(j);
-                }
-            }
+            // var a = arrKey.count(lettreEncode);
 
-            arrEncodeResult.push(a);
+            // console.log(a);
+
+            // arrKey.lastIndexOf(lettreEncode, i);
+
+            // arrEncodeResult.push(i);
+
+            var a;
+
+            
 
         }
-
-        // arrForEncode.forEach(function(item, i, arrKey) {
-        //     console.log( i + ": " + item + " (массив:" + arrKey + ")" );
-        // });
 
     } else {
         return 'enter another value';
@@ -61,7 +60,7 @@ function encode(input, key = "абвгдбеуёжзийклмнопрстуфх
     return arrEncodeResult;
 }
 
-console.log(encode("Бууря буу"));
+console.log(encode("Буууря уу"));
 
 
 
