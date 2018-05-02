@@ -12,9 +12,36 @@
 // например буква у может быть представлена как 2 и 40. разделения на большие и малые буквы нет. 
 // Вторая функция принимает массив чисел и возвращает строку.
 
-function encode(input, key) {
-    return;
+function encode(input, key = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя") {
+    var arrEncodeResult = [];
+    var arrKey = key.toLowerCase().split('');
+    var arrForEncode = input.toLowerCase().split('');
+
+    if (typeof (key) === 'string' && typeof (input) === 'string') {
+
+        for (var i = 0; arrForEncode.length > i; i++) {
+
+            var lettreEncode = arrForEncode[i];
+
+            console.log(lettreEncode);
+        }
+
+        for (var j = 0; arrKey.length > j; j++) {
+
+            if (arrKey[j] === lettreEncode) {
+                
+            }
+        }
+
+    } else {
+        return 'enter another value';
+    }
+    
+    return arrEncodeResult;
 }
+
+console.log(encode("Буря мглою"));
+
 
 /**
  * Decode array of numbers to string by Stirlitz method
@@ -22,7 +49,9 @@ function encode(input, key) {
  * @param {string} key key for decoding
  * @returns {string} Returns decoded string.
  */
-function decode(input, key) {
+function decode(input, key = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя") {
+
+
     return;
 }
 
