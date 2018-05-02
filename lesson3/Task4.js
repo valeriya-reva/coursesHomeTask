@@ -12,6 +12,7 @@
 // например буква у может быть представлена как 2 и 40. разделения на большие и малые буквы нет. 
 // Вторая функция принимает массив чисел и возвращает строку.
 
+<<<<<<< HEAD:lesson3/hw3/Task4.js
 Object.defineProperties(Array.prototype, {
     count: {
         value: function(query) {
@@ -59,6 +60,24 @@ function encode(input, key = "абвгдбеуёжзийклмнопрстуфх
     }
     
     return arrEncodeResult;
+=======
+function encode(input, key) {
+    var arrKey = key.split('');
+    var arrKeyNun = [];
+
+    for (var i = 1; i < arrKey.length + 1; i++) {
+        arrKeyNun.push(i);
+    }
+    
+    return arrKeyNun;
+}
+
+console.log(encode('бяя', 'Буряя'));
+
+function decode(input, key) {
+
+    return;
+>>>>>>> e44e815c88bcce46dc4f52dc7147a34c2949dc36:lesson3/Task4.js
 }
 
 console.log(encode("Бууря буу"));
@@ -91,7 +110,10 @@ function decode(input, key = "абвгдеуёжзийклмнопрстуфхц
     return arrDecode;
 }
 
+<<<<<<< HEAD:lesson3/hw3/Task4.js
 console.log(decode([ 1, 6, 21, 6, 21, 18, 33, 14, 3, 13, 16, 32 ]));
+=======
+>>>>>>> e44e815c88bcce46dc4f52dc7147a34c2949dc36:lesson3/Task4.js
 
 module.exports = {
     encode,
