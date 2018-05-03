@@ -4,33 +4,25 @@
  * @returns {Array<number>} Returns filtered array.
  */
 
-// В функцию передается массив с числами. 
-// Функция должна возвращать массив который содержит только те числа, 
-// которые больше нуля и меньше 10-ти. Для этого используйте вспомогательную 
-// функцию isNumberInRange, которая проверяет, что оно больше нуля и меньше 10. 
-// Если это так - функция возвращает true, если не так - false.
-
 function isNumberInRange (num) {
-    if (typeof(num) === 'number') {
-        return num > 0 && num < 10;
-    } else {
-        return 'enter another value';
-    }
+    return num > 0 && num < 10;
 }
 
 function advancedFilter(input) {
     var arrResult = [];
 
-    for (var i = 0; i < input.length; i++) {
-        var testNum = isNumberInRange (input[i]);
-
-        if (testNum) {
-            arrResult.push(input[i]);
+    if (!Array.isArray(input)) {
+        throw 'error';
+    } else {
+        for (var i = 0; i < input.length; i++) {
+            if (isNumberInRange (input[i]) && typeof(input[i]) === 'number') {
+                 arrResult.push(input[i]);
+            }
         }
     }
 
     return arrResult;
 }
 
-
 module.exports = advancedFilter;
+
