@@ -5,17 +5,17 @@
  */
 
 function isPositive(num) {
-    return num >=0;
+    return num >= 0;
 }
 
 function negativeFilter(input) {
     var arrPositiveNum = [];
 
     if (!Array.isArray(input)) {
-        throw 'error';
+        throw new TypeError('invalid value');
     } else {
-        for (var i = 0; i < input.length; i++) {
-            if (isPositive(input[i]) && typeof(input[i]) === 'number') {
+        for (var i = 0; i < input.length; i += 1) {
+            if (isPositive(input[i]) && typeof (input[i]) === 'number') {
                 arrPositiveNum.push(input[i]);
             }
         }

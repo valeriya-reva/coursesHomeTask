@@ -5,15 +5,14 @@
  */
 
 function isPolindrome(input) {
+    var arrPolondrome = input.toLowerCase().split(' ').join('');
+
     if (typeof (input) !== 'string') {
         return;
-    } else {
-        var arrPolondrome = input.toLowerCase().split(' ').join('');
-
-        for (var i = 0; i < arrPolondrome.length; i++) {
-            if (arrPolondrome[i] !== arrPolondrome[arrPolondrome.length - i - 1]) {
-                return false;
-            }
+    }
+    for (var i = 0; i < arrPolondrome.length; i += 1) {
+        if (arrPolondrome[i] !== arrPolondrome[arrPolondrome.length - i - 1]) {
+            return false;
         }
     }
     return true;
