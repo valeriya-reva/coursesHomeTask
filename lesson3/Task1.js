@@ -13,13 +13,13 @@ function negativeFilter(input) {
 
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
-    } else {
-        for (var i = 0; i < input.length; i += 1) {
-            if (isPositive(input[i]) && typeof (input[i]) === 'number') {
-                arrPositiveNum.push(input[i]);
-            }
-        }
     }
+
+    input.forEach(function (item, i) {
+        if (isPositive(item)) {
+            arrPositiveNum.push(item);
+        }
+    });
 
     return arrPositiveNum;
 }

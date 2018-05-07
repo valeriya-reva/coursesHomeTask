@@ -11,13 +11,12 @@ function encode(input, key = 'абвгдеёжзийклмнопрстуфхцч
     var arrKey = key.toLowerCase().split('');
     var arrForEncode = input.toLowerCase().split('');
 
-    if (typeof (key) === 'string' && typeof (input) === 'string') {
-        for (var i = 0; i < arrForEncode.length; i += 1) {
-            arrEncodeResult.push(arrKey.indexOf(arrForEncode[i], i) + 1);
-        }
-    } else {
-        return false;
+    if (typeof (key) !== 'string' && typeof (input) !== 'string') {
+        throw new TypeError('invalid value');
     }
+    arrForEncode.forEach(function (item, i) {
+        arrEncodeResult.push(arrKey.indexOf(item, i) + 1);
+    });
     return arrEncodeResult;
 }
 
@@ -32,13 +31,16 @@ function decode(input, key = 'абвгдеёжзийклмнопрстуфхцч
     var strKey = key.toLowerCase();
     var strDecodeResult = '';
 
-    for (var i = 0; i < input.length; i += 1) {
+    if (typeof (key) !== 'string' && !Array.isArray(input)) {
+        throw new TypeError('invalid value');
+    }
+    input.forEach(function (item, i) {
         for (var j = 0; j < strKey.length; j += 1) {
-            if (input[i] === j) {
+            if (item === j) {
                 strDecodeResult += strKey[j - 1];
             }
         }
-    }
+    });
     return strDecodeResult;
 }
 

@@ -13,13 +13,12 @@ function advancedFilter(input) {
 
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
-    } else {
-        for (var i = 0; i < input.length; i += 1) {
-            if (isNumberInRange(input[i]) && typeof (input[i]) === 'number') {
-                 arrResult.push(input[i]);
-            }
-        }
     }
+    input.forEach(function (item, i) {
+        if (isNumberInRange(item)) {
+            arrResult.push(item);
+        }
+    });
     return arrResult;
 }
 

@@ -7,34 +7,23 @@
 
  const commonDevisor = (num1, num2) => {
     if (typeof num1 && typeof num2 !== 'number') {
-        throw new TypeError('invalid value');
+      throw new TypeError('invalid value');
     }
-    var A = [num1, num2];
-    var arr1 = [];
-    var arr2 = [];
-    var gcd;
-    var arrNumPositive = [];
+    var arrNum = [num1, num2];
+    var gcd = Math.abs(arrNum[0]);
 
-    // for (k = num1; k > 0; k -= 1) {
-    //     if (num1 % k) {
-    //         arr1.push(k);
-    //     }
-    // };
-    // for (i = num2; i > 0; i -= 1) {
-    //     if (num2 % i) {
-    //         arr2.push(i);
-    //     }
-    // };
+    arrNum.forEach(function (item, i) {
+      var counterNum = Math.abs(item);
 
-    var n = A.length, x = Math.abs(A[0]);
-    for (var i = 1; i < n; i++)
-     { var y = Math.abs(A[i]);
-       while (x && y){ x > y ? x %= y : y %= x; }
-       x += y;
-     }
-    return x;
-    
- };
+      while (gcd && counterNum){
+        gcd > counterNum ? gcd %= counterNum : counterNum %= gcd;
+      }
+
+      gcd += counterNum;
+    });
+
+    return gcd;
+ }; 
 
 console.log(commonDevisor(102, 100));
 
