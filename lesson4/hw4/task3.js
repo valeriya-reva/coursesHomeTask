@@ -10,20 +10,30 @@ const advancedFilter = (input) => {
     }
     var resultArr = [];
 
-    function filtered (x) {
-        for (var a = x; a >= 5; a - 5) {
-            console.log (a);
+    function filterFun (element) {
+        element = Math.abs(element);
+
+        for (var a = element; a >= 0; a -= 5) {
             if (a === 0) {
-                resultArr.push(x);
-            };
-            return resultArr;
-        }
+                return true;
+            }
+        };
+        for (var a = element; a >= 0; a -= 3) {
+            if (a === 0) {
+                return true;
+            }
+        };
+        for (var a = element; a >= 0; a -= 7) {
+            if (a === 0) {
+                return true;
+            }
+        };
     }
 
-    input.filter(filtered);
+    resultArr = input.filter(filterFun);
 
     return resultArr;
 };
 
-console.log(advancedFilter([ 5]));
+console.log(advancedFilter([6, 7, 20, 11, 5]));
 module.exports = advancedFilter;
