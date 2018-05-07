@@ -9,9 +9,15 @@ const advancedFilter = (input) => {
         throw new TypeError('invalid value');
     }
     var resultArr = [];
-    
+
     function filtered (x) {
-        
+        for (var a = x; a >= 5; a - 5) {
+            console.log (a);
+            if (a === 0) {
+                resultArr.push(x);
+            };
+            return resultArr;
+        }
     }
 
     input.filter(filtered);
@@ -19,5 +25,5 @@ const advancedFilter = (input) => {
     return resultArr;
 };
 
-console.log(advancedFilter([1, 3, 5, 7, 14]));
+console.log(advancedFilter([ 5]));
 module.exports = advancedFilter;
