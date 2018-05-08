@@ -14,9 +14,7 @@ const maxMin = (input, order = true) => {
 
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
-    }
-
-    if (order) {
+    } else if (order) {
         result = Math.max.apply( Math, input );
     } else {
         result = Math.min.apply( Math, input );

@@ -9,13 +9,13 @@ function isPositive(num) {
 }
 
 function negativeFilter(input) {
-    var arrPositiveNum = [];
+    const arrPositiveNum = [];
 
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
     }
 
-    input.forEach(function (item, i) {
+    input.forEach((item) => {
         if (isPositive(item)) {
             arrPositiveNum.push(item);
         }

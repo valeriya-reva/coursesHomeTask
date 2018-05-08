@@ -7,14 +7,14 @@
 
 
 function encode(input, key = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя ') {
-    var arrEncodeResult = [];
-    var arrKey = key.toLowerCase().split('');
-    var arrForEncode = input.toLowerCase().split('');
+    const arrEncodeResult = [];
+    const arrKey = key.toLowerCase().split('');
+    const arrForEncode = input.toLowerCase().split('');
 
     if (typeof (key) !== 'string' && typeof (input) !== 'string') {
         throw new TypeError('invalid value');
     }
-    arrForEncode.forEach(function (item, i) {
+    arrForEncode.forEach((item, i) => {
         arrEncodeResult.push(arrKey.indexOf(item, i) + 1);
     });
     return arrEncodeResult;
@@ -28,14 +28,14 @@ function encode(input, key = 'абвгдеёжзийклмнопрстуфхцч
  */
 
 function decode(input, key = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя ') {
-    var strKey = key.toLowerCase();
-    var strDecodeResult = '';
+    const strKey = key.toLowerCase();
+    let strDecodeResult = '';
 
     if (typeof (key) !== 'string' && !Array.isArray(input)) {
         throw new TypeError('invalid value');
     }
-    input.forEach(function (item, i) {
-        for (var j = 0; j < strKey.length; j += 1) {
+    input.forEach((item) => {
+        for (let j = 0; j < strKey.length; j += 1) {
             if (item === j) {
                 strDecodeResult += strKey[j - 1];
             }

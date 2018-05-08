@@ -23,7 +23,7 @@
     });
 
     return gcd;
- }; 
+ };
 
 console.log(commonDevisor(102, 100));
 

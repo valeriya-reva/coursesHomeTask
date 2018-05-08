@@ -9,12 +9,12 @@ function isNumberInRange(num) {
 }
 
 function advancedFilter(input) {
-    var arrResult = [];
+    const arrResult = [];
 
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
     }
-    input.forEach(function (item, i) {
+    input.forEach((item) => {
         if (isNumberInRange(item)) {
             arrResult.push(item);
         }

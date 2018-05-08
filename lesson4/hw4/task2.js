@@ -10,17 +10,17 @@ const lowestMultiple = (num1, num2) => {
         throw new TypeError('invalid value');
     }
     var arrNum = [num1, num2];
+    var gcd = Math.abs(arrNum[0]);
     var lcm = Math.abs(arrNum[0]);
 
-    arrNum.forEach(function(item, i) {
-        var b = Math.abs(item);
-        var c = lcm;
-
-        while (lcm && b){
-            lcm > b ? lcm %= b : b %= lcm;
-            lcm = Math.abs(c*item)/(lcm+b);
-        };
-    });
+    for (var i = 1; i < arrNum.length; i++){ 
+        var b = Math.abs(arrNum[i]),
+        c = lcm;
+       while (lcm && b){
+        lcm > b ? lcm %= b : b %= lcm;
+        } 
+        lcm = Math.abs(c*arrNum[i])/(lcm+b);
+     }
 
     return lcm;
 }
