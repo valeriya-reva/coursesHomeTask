@@ -6,19 +6,22 @@
  */
 
 const lowestMultiple = (num1, num2) => {
+    let arrNum = [num1, num2];
+    let gcd = Math.abs(arrNum[0]);
+    let lcm = Math.abs(arrNum[0]);
+
     if (typeof num1 && typeof num2 !== 'number') {
         throw new TypeError('invalid value');
     }
-    var arrNum = [num1, num2];
-    var gcd = Math.abs(arrNum[0]);
-    var lcm = Math.abs(arrNum[0]);
 
-    for (var i = 1; i < arrNum.length; i++){ 
-        var b = Math.abs(arrNum[i]),
-        c = lcm;
+    for (let i = 1; i < arrNum.length; i += 1) { 
+        let b = Math.abs(arrNum[i]);
+        let c = lcm;
+
        while (lcm && b){
-        lcm > b ? lcm %= b : b %= lcm;
-        } 
+            lcm > b ? lcm %= b : b %= lcm;
+        }
+
         lcm = Math.abs(c*arrNum[i])/(lcm+b);
      }
 

@@ -8,7 +8,7 @@ const moveZeros = function (arr) {
         throw new TypeError('invalid value');
     }
 
-    arr.forEach(function (item, i) {
+    arr.forEach((item, i) => {
         if (item === 0) {
             arr.splice(i, 1);
             arr.push(item);
@@ -16,8 +16,6 @@ const moveZeros = function (arr) {
     });
 
     return arr;
-}
-
-console.log(moveZeros([0, 1, 7, 0, 3, 0, 7, 0]));
+};
 
 module.exports = moveZeros;

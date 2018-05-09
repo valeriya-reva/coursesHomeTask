@@ -5,35 +5,29 @@
  */
 
 const advancedFilter = (input) => {
+    let resultArr = [];
+    const numDivider = [3, 5, 7];
+
     if (!Array.isArray(input)) {
         throw new TypeError('invalid value');
     }
-    var resultArr = [];
+    const filterFun = (element) => {
+        const thisElement = Math.abs(element);
+        let result;
 
-    function filterFun (element) {
-        element = Math.abs(element);
-
-        for (var a = element; a >= 0; a -= 5) {
-            if (a === 0) {
-                return true;
+        for (let n = 0; n < numDivider.length; n += 1) {
+            for (let a = thisElement; a >= 0; a -= numDivider[n]) {
+                if (a <= 0) {
+                    result = a === 0;
+                }
             }
-        };
-        for (var a = element; a >= 0; a -= 3) {
-            if (a === 0) {
-                return true;
-            }
-        };
-        for (var a = element; a >= 0; a -= 7) {
-            if (a === 0) {
-                return true;
-            }
-        };
-    }
+        }
+        return result;
+    };
 
     resultArr = input.filter(filterFun);
 
     return resultArr;
 };
 
-console.log(advancedFilter([6, 7, 20, 11, 5]));
 module.exports = advancedFilter;
