@@ -1,4 +1,4 @@
-в стрелочной функции только стрелочные функции и нет var
+// в стрелочной функции только стрелочные функции и нет var
 
 var a = {
     __name: 'Z',
@@ -13,7 +13,7 @@ a.age = 12;
 a.sayNameStranger();
 
 a.newName = function() {
-    console.log('$(this.age) $(this._name)');
+    console.log("$(this.age) $(this.p)");
 };
 
-a.newM();
+a.newName();

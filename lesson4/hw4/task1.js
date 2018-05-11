@@ -1,5 +1,5 @@
 /**
- * Calculates Сommon Divisor 
+ * Calculates Сommon Divisor
  * @param {number} num1
  * @param {number} num2
  * @returns {number} Returns Сommon Divisor.
@@ -12,12 +12,16 @@ const commonDevisor = (num1, num2) => {
     if (typeof num1 && typeof num2 !== 'number') {
         throw new TypeError('invalid value');
     }
-    
-    arrNum.forEach(function (item) {
+
+    arrNum.forEach((item) => {
         let counterNum = Math.abs(item);
 
         while (gcd && counterNum) {
-            gcd > counterNum ? gcd %= counterNum : counterNum %= gcd;
+            if (gcd > counterNum) {
+                gcd %= counterNum;
+            } else {
+                counterNum %= gcd;
+            }
         }
         gcd += counterNum;
     });

@@ -5,41 +5,23 @@
  * @returns {string} Returns Encrypted string.
  */
 
- const encrypt = (text, n) => {
+const encrypt = (text, n) => {
+    if (typeof text !== 'string' || !text) {
+        return text;
+    }
+
     let arrText = text.split('');
-    let resuktOne;
-    let resuktTwo;
-    var result;
 
-    if (typeof text !== 'string' && typeof n !== 'number') {
-        throw new TypeError('invalid value');
+    const findOdd = (element, index) => index % 2 !== 0;
+
+    const findEven = (element, index) => index % 2 === 0;
+
+    for (let i = n; i > 0; i -= 1) {
+        arrText = (arrText.filter(findOdd)).concat(arrText.filter(findEven));
     }
 
-    const findOdd = (element, index) => {
-         if (index % 2 !== 0) {
-            return true;
-        }
-    }
-
-    const findEven = (element, index) => {
-        if (index % 2 === 0) {
-           return true;
-       }
-    }
-
-    const iteratArr = (x) => {
-        resuktOne = x.filter(findOdd);
-        resuktTwo = x.filter(findEven);
-        return arrText = resuktOne.concat(resuktTwo);
-    };
-
-
-    for (var i = n + 1; i > 0; --i)  {
-        iteratArr(arrText);
-    };
-    
-     return arrText;
- };
+    return arrText.join('');
+};
 
 /**
  * String encription
@@ -48,10 +30,24 @@
  * @returns {string} Returns Decrypted string.
  */
 const decrypt = (encryptedText, n) => {
+    if (typeof encryptedText !== 'string' || !encryptedText) {
+        return encryptedText;
+    }
 
-}
+    const arrText = encryptedText.split('');
 
-console.log(encrypt("This is a test!", 3));
+    for (let i = n; i > 0; i -= 1) {
+        const start = Math.floor(arrText.length / 2);
+        const arrRemoved = arrText.splice(start);
+        let counter = 0;
 
+        arrRemoved.forEach((element) => {
+            arrText.splice(counter, 0, element);
+            counter += 2;
+        });
+    }
 
-module.exports = { encrypt , decrypt };
+    return arrText.join('');
+};
+
+module.exports = { encrypt, decrypt };
