@@ -2,6 +2,8 @@
 // - Battle field - height, width(in cells), Array of tanks, Array Obstacles(x,y) 
 // - Create on html batelfield view with takks on it
 
+var cellSize = 50;
+
 
 var Tank = function (thisFuel, thisAmmo, thisPosX, thisPosY, thisId) {
     this.fuel = thisFuel;
@@ -44,8 +46,8 @@ var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId
         var container = document.getElementById('main');
         container.appendChild(field);
 
-        field.style.width = element.width * 50 + 'px';
-        field.style.height = element.height * 50 + 'px';
+        field.style.width = element.width * cellSize + 'px';
+        field.style.height = element.height * cellSize + 'px';
     }(thisId, this));
 
     (function (obstaclesArray) {
@@ -56,8 +58,8 @@ var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId
             var container = document.getElementById(battlefieldId);
             container.appendChild(field);
 
-            field.style.top = element.positionY + 'px';
-            field.style.left = element.positionX + 'px';
+            field.style.top = element.positionY * cellSize + 'px';
+            field.style.left = element.positionX * cellSize + 'px';
         });
     }(obstaclesArr));
 
@@ -69,24 +71,24 @@ var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId
             var container = document.getElementById(battlefieldId);
             container.appendChild(field);
 
-            field.style.top = element.positionY + 'px';
-            field.style.left = element.positionX + 'px';
+            field.style.top = element.positionY * cellSize + 'px';
+            field.style.left = element.positionX * cellSize + 'px';
         });
     }(tankArr));
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {    
-	var tank1 = new Tank (100, 10, 100, 200, 'tank1');
-    var tank2 = new Tank (100, 10, 320, 280, 'tank2');
-    var tank3 = new Tank (100, 10, 10, 600, 'tank3');
+	var tank1 = new Tank (100, 10, 1, 7, 'tank1');
+    var tank2 = new Tank (100, 10, 9, 3, 'tank2');
+    var tank3 = new Tank (100, 10, 4, 6, 'tank3');
 
-    var obst1 = new Obstacles (320, 229, 'obst1');
-    var obst2 = new Obstacles (400, 60, 'obst2');
-    var obst3 = new Obstacles (0, 80, 'obst3');
-    var obst4 = new Obstacles (278, 660, 'obst1');
+    var obst1 = new Obstacles (4, 8, 'obst1');
+    var obst2 = new Obstacles (2, 5, 'obst2');
+    var obst3 = new Obstacles (5, 3, 'obst3');
+    var obst4 = new Obstacles (1, 1, 'obst1');
 
 
-    var myBattlefield = new Battlefield (15, 15, [tank1, tank2, tank3], [obst1, obst2, obst3, obst4], 'myBattlefield');
+    var myBattlefield = new Battlefield (12, 12, [tank1, tank2, tank3], [obst1, obst2, obst3, obst4], 'myBattlefield');
 
     console.log(myBattlefield, obst1);
 });
