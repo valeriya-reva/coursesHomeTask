@@ -4,91 +4,129 @@
 
 var cellSize = 50;
 
+var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId) {
+    this.height = thisHeight;
+    this.width = widthWidth;
+    this.battlefieldId = thisId;
+
+    this.create();
+    this.tankCreate(tankArr);
+    this.obstaclesCreate(obstaclesArr);
+}
+
+Battlefield.prototype = {
+    create: function(){
+        var field = document.createElement('div');
+        field.setAttribute("id", this.battlefieldId);
+        document.getElementById('main').appendChild(field);
+    
+        field.style.width = this.width * cellSize + 'px';
+        field.style.height = this.height * cellSize + 'px';
+    },
+
+    tankCreate: function(tankArray){
+        tankArray.forEach(element => {
+            var field = document.createElement('div');
+            field.setAttribute("id", element.tankId);
+            field.setAttribute("class", 'tank');
+            document.getElementById(this.battlefieldId).appendChild(field);
+            
+            field.style.top = element.positionY * cellSize - cellSize + 'px';
+            field.style.left = element.positionX * cellSize - cellSize + 'px';
+
+        });
+    },
+
+    obstaclesCreate: function(obstaclesArray){
+        obstaclesArray.forEach(element => {
+            var field = document.createElement('div');
+            field.setAttribute("id", element.obstId);
+            field.setAttribute("class", 'obstacles');
+            document.getElementById(this.battlefieldId).appendChild(field);;
+            
+            field.style.top = element.positionY * cellSize - cellSize + 'px';
+            field.style.left = element.positionX * cellSize - cellSize + 'px';
+        });
+    }
+}
 
 var Tank = function (thisFuel, thisAmmo, thisPosX, thisPosY, thisId) {
     this.fuel = thisFuel;
     this.ammo = thisAmmo;
     this.positionX = thisPosX;
     this.positionY = thisPosY;
-    this.thisId = thisId;
-    this.moveright = function() {
-        this.fuel -= 1;
-        this.positionX += 1;
-    }
-    this.moveleft = function() {
-        this.fuel -= 1;
-        this.positionX -= 1;
-    }
-    this.movetop = function() {
-        this.fuel -= 1;
-        this.positionY += 1;
-    }
-    this.movebottom = function() {
-        this.fuel -= 1;
-        this.positionY -= 1;
+    this.tankId = thisId;
+}
+
+Tank.prototype = {
+    moveright: function() {
+        if (this.fuel > 0) {
+            this.fuel -= 1;
+            this.positionX += 1;
+            document.getElementById(this.tankId).style.left = this.positionX * cellSize + 'px';
+        }
+    },
+
+    moveleft: function() {
+        if (this.fuel > 0) {
+            this.fuel -= 1;
+            this.positionX -= 1;
+            document.getElementById(this.tankId).style.left = this.positionX * cellSize + 'px';
+        }
+    },
+
+    movetop: function() {
+        if (this.fuel > 0) {
+            this.fuel -= 1;
+            this.positionY -= 1;
+            document.getElementById(this.tankId).style.top = this.positionY * cellSize + 'px';
+        }
+    },
+
+    movebottom: function() {
+        if (this.fuel > 0) {
+            this.fuel -= 1;
+            this.positionY += 1;
+            document.getElementById(this.tankId).style.top = this.positionY * cellSize + 'px';
+        }
     }
 }
 
 var Obstacles = function (thisPosX, thisPosY, thisId) {
     this.positionX = thisPosX;
     this.positionY = thisPosY;
-    this.thisId = thisId;
+    this.obstId = thisId;
 }
 
-var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId) {
-    this.height = thisHeight;
-    this.width = widthWidth;
-    var battlefieldId = thisId;
-
-    (function (elementId, element) {
-        var field = document.createElement('div');
-        field.setAttribute("id", elementId);
-        var container = document.getElementById('main');
-        container.appendChild(field);
-
-        field.style.width = element.width * cellSize + 'px';
-        field.style.height = element.height * cellSize + 'px';
-    }(thisId, this));
-
-    (function (obstaclesArray) {
-        obstaclesArray.forEach(element => {
-            var field = document.createElement('div');
-            field.setAttribute("id", element.thisId);
-            field.setAttribute("class", 'obstacles');
-            var container = document.getElementById(battlefieldId);
-            container.appendChild(field);
-
-            field.style.top = element.positionY * cellSize + 'px';
-            field.style.left = element.positionX * cellSize + 'px';
-        });
-    }(obstaclesArr));
-
-    (function (tankArray) {
-        tankArray.forEach(element => {
-            var field = document.createElement('div');
-            field.setAttribute("id", element.thisId);
-            field.setAttribute("class", 'tank');
-            var container = document.getElementById(battlefieldId);
-            container.appendChild(field);
-
-            field.style.top = element.positionY * cellSize + 'px';
-            field.style.left = element.positionX * cellSize + 'px';
-        });
-    }(tankArr));
-}
 
 document.addEventListener("DOMContentLoaded", function(event) {    
-	var tank1 = new Tank (100, 10, 1, 7, 'tank1');
-    var tank2 = new Tank (100, 10, 9, 3, 'tank2');
-    var tank3 = new Tank (100, 10, 4, 6, 'tank3');
+    var tank = new Tank (100, 10, 3, 7, 'tank1');
 
     var obst1 = new Obstacles (4, 8, 'obst1');
-    var obst2 = new Obstacles (2, 5, 'obst2');
-    var obst3 = new Obstacles (5, 3, 'obst3');
-    var obst4 = new Obstacles (1, 1, 'obst1');
+    var obst2 = new Obstacles (5, 8, 'obst2');
+    var obst3 = new Obstacles (7, 3, 'obst3');
+    var obst4 = new Obstacles (1, 1, 'obst4');
+    var obst5 = new Obstacles (8, 8, 'obst5');
+    var obst6 = new Obstacles (2, 5, 'obst6');
 
+    var myBattlefield = new Battlefield (12, 12, [tank], [obst1, obst2, obst3, obst4, obst5, obst6], 'myBattlefield');
 
-    var myBattlefield = new Battlefield (12, 12, [tank1, tank2, tank3], [obst1, obst2, obst3, obst4], 'myBattlefield');
+    document.addEventListener('keydown', function(event) {
+        switch (event.keyCode) {
+          case 37:
+            tank.moveleft();
+            break;
+          case 38:
+            tank.movetop();
+            break;
+          case 39:
+            tank.moveright();
+            break;
+          case 40:
+            tank.movebottom();
+            break;
+        }
+      });
 
-    console.log(myBattlefield, obst1);
+    console.log();
 });

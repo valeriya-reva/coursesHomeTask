@@ -519,25 +519,22 @@ input[type='submit'] {
 
 #myBattlefield {
   position: relative;
-  background: #000;
-  border: 40px solid #40c4c8;
-  -webkit-border-image: url(../images/bg.jpg) 40 round round;
-          border-image: url(../images/bg.jpg) 40 round round; }
+  background: #2d2626; }
 
 .obstacles {
   display: block;
   background: url(../images/bg.jpg);
   background-size: 50%;
   background-repeat: repeat;
-  width: 180px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   position: absolute; }
 
 .tank {
   display: block;
   background: url(../images/normatank.png);
   background-size: cover;
-  width: 55px;
-  height: 75px;
+  width: 35px;
+  height: 50px;
   position: absolute; }
 /*# sourceMappingURL=main.css.map */
