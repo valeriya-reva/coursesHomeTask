@@ -531,6 +531,8 @@ input[type='submit'] {
   position: absolute; }
 
 .tank {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   display: block;
   background: url(../images/normatank.png);
   background-size: cover;

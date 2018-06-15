@@ -8,6 +8,7 @@ var Battlefield = function(thisHeight, widthWidth, tankArr, obstaclesArr, thisId
     this.height = thisHeight;
     this.width = widthWidth;
     this.battlefieldId = thisId;
+    this.arrObst =  obstaclesArr;
 
     this.create();
     this.tankCreate(tankArr);
@@ -59,35 +60,53 @@ var Tank = function (thisFuel, thisAmmo, thisPosX, thisPosY, thisId) {
 }
 
 Tank.prototype = {
-    moveright: function() {
-        if (this.fuel > 0) {
+    moveright: function(thisBattlefield) {
+        var element = document.getElementById(this.tankId);
+        var self = this;
+        
+        function test(el) {
+            return el.positionY !== self.positionY + 1 && el.positionX !== self.positionX + 2;
+        }
+        console.log(thisBattlefield.arrObst.every(test));
+        if (this.fuel > 0 && thisBattlefield.width * cellSize - element.clientHeight > this.positionX  * cellSize && !thisBattlefield.arrObst.every(test)) {
             this.fuel -= 1;
             this.positionX += 1;
-            document.getElementById(this.tankId).style.left = this.positionX * cellSize + 'px';
+            element.style.left = this.positionX * cellSize + 'px';
+            element.style.transform = 'rotate(90deg)';
+            console.log(self.positionY + 1, self.positionX + 2);
         }
     },
 
-    moveleft: function() {
-        if (this.fuel > 0) {
+    moveleft: function(thisBattlefield) {
+        var element = document.getElementById(this.tankId);
+
+        if (this.fuel > 0 && 0 < this.positionX  * cellSize) {
             this.fuel -= 1;
             this.positionX -= 1;
-            document.getElementById(this.tankId).style.left = this.positionX * cellSize + 'px';
+            element.style.left = this.positionX * cellSize + 'px';
+            element.style.transform =' rotate(-90deg)';
         }
     },
 
-    movetop: function() {
-        if (this.fuel > 0) {
+    movetop: function(thisBattlefield) {
+        var element = document.getElementById(this.tankId);
+
+        if (this.fuel > 0 && 0 < this.positionY) {
             this.fuel -= 1;
             this.positionY -= 1;
-            document.getElementById(this.tankId).style.top = this.positionY * cellSize + 'px';
+            element.style.top = this.positionY * cellSize + 'px';
+            element.style.transform =' rotate(0deg)';
         }
     },
 
-    movebottom: function() {
-        if (this.fuel > 0) {
+    movebottom: function(thisBattlefield) {
+        var element = document.getElementById(this.tankId);
+
+        if (this.fuel > 0 && thisBattlefield.height * cellSize - element.clientHeight > this.positionY  * cellSize) {
             this.fuel -= 1;
             this.positionY += 1;
-            document.getElementById(this.tankId).style.top = this.positionY * cellSize + 'px';
+            element.style.top = this.positionY * cellSize + 'px';
+            element.style.transform =' rotate(180deg)';
         }
     }
 }
@@ -109,24 +128,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var obst5 = new Obstacles (8, 8, 'obst5');
     var obst6 = new Obstacles (2, 5, 'obst6');
 
+    // , obst2, obst3, obst4, obst5, obst6
+
     var myBattlefield = new Battlefield (12, 12, [tank], [obst1, obst2, obst3, obst4, obst5, obst6], 'myBattlefield');
 
     document.addEventListener('keydown', function(event) {
         switch (event.keyCode) {
           case 37:
-            tank.moveleft();
+            tank.moveleft(myBattlefield);
             break;
           case 38:
-            tank.movetop();
+            tank.movetop(myBattlefield);
             break;
           case 39:
-            tank.moveright();
+            tank.moveright(myBattlefield);
             break;
           case 40:
-            tank.movebottom();
+            tank.movebottom(myBattlefield);
             break;
         }
       });
-
-    console.log();
 });

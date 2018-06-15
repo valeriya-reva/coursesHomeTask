@@ -32,6 +32,7 @@ Promise.all([
         .then((data) => {
             myStr = data.join('');
             return myStr;
+            console.log(data);
         })
         .catch((err) => {
             console.log(err.message);

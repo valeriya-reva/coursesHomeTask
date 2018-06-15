@@ -55,6 +55,7 @@ $media-expressions: (
 }
 
 .tank {
+	@include animate(all);
 	display: block;
 	background: url(../images/normatank.png);
 	background-size: cover;
